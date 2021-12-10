@@ -60,14 +60,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
 #if($table.sub)
     
-    <delete id="delete${subClassName}By${subTableFkClassName}s" parameterType="String">
+    <delete id="delete${subClassName}By${subTableFkClassName}s">
         delete from ${subTableName} where ${subTableFkName} in 
         <foreach item="${subTableFkclassName}" collection="array" open="(" separator="," close=")">
             #{${subTableFkclassName}}
         </foreach>
     </delete>
 
-    <delete id="delete${subClassName}By${subTableFkClassName}" parameterType="${pkColumn.javaType}">
+    <delete id="delete${subClassName}By${subTableFkClassName}">
         delete from ${subTableName} where ${subTableFkName} = #{${subTableFkclassName}}
     </delete>
 
