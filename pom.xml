@@ -197,13 +197,6 @@
                 <version>${ruoyi.version}</version>
             </dependency>
 
-            <!-- 多数据源 -->
-            <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-common-datasource</artifactId>
-                <version>${ruoyi.version}</version>
-            </dependency>
-
             <!-- 日志记录 -->
             <dependency>
                 <groupId>com.ruoyi</groupId>
