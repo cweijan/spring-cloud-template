@@ -185,7 +185,7 @@ public class VelocityUtils
         }
         else if (template.contains("service.java.vm"))
         {
-            fileName = StringUtils.format("{}/service/I{}Service.java", javaPath, className);
+            fileName = StringUtils.format("{}/service/{}Service.java", javaPath, className);
         }
         else if (template.contains("serviceImpl.java.vm"))
         {

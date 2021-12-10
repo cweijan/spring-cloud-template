@@ -17,6 +17,14 @@
     <artifactId>ruoyi-modules</artifactId>
     <packaging>pom</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+    </dependencies>
+
     <description>
         ruoyi-modules业务模块
     </description>
