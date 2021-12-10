@@ -16,7 +16,7 @@ public class BaseEntity implements Serializable
     private static final long serialVersionUID = 1L;
 
     /** 搜索值 */
-    private String searchValue;
+    private transient String searchValue;
 
     /** 创建者 */
     private String createBy;
@@ -36,7 +36,7 @@ public class BaseEntity implements Serializable
     private String remark;
 
     /** 请求参数 */
-    private Map<String, Object> params;
+    private transient Map<String, Object> params;
 
     public String getSearchValue()
     {

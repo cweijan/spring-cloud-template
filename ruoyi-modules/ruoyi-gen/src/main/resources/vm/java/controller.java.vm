@@ -1,6 +1,7 @@
 package ${packageName}.controller;
 
 import java.util.List;
+import java.util.Arrays;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +105,6 @@ public class ${ClassName}Controller extends BaseController
 	@DeleteMapping("/{${pkColumn.javaField}s}")
     public AjaxResult remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s)
     {
-        return toAjax(${className}Service.removeByIds(${pkColumn.javaField}s));
+        return toAjax(${className}Service.removeByIds(Arrays.asList(${pkColumn.javaField}s)));
     }
 }
