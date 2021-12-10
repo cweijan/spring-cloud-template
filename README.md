@@ -31,7 +31,6 @@ com.ruoyi
 ├── ruoyi-modules         // 业务模块
 │       └── ruoyi-system                              // 系统模块 [9201]
 │       └── ruoyi-gen                                 // 代码生成 [9202]
-│       └── ruoyi-job                                 // 定时任务 [9203]
 │       └── ruoyi-file                                // 文件服务 [9300]
 ├── ruoyi-visual          // 图形化管理模块
 │       └── ruoyi-visual-monitor                      // 监控中心 [9100]
