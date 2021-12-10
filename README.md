@@ -24,7 +24,6 @@ com.ruoyi
 │       └── ruoyi-api-system                          // 系统接口
 ├── ruoyi-common          // 通用模块
 │       └── ruoyi-common-core                         // 核心模块
-│       └── ruoyi-common-datascope                    // 权限范围
 │       └── ruoyi-common-log                          // 日志记录
 │       └── ruoyi-common-redis                        // 缓存服务
 │       └── ruoyi-common-security                     // 安全模块

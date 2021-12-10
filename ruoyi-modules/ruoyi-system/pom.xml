@@ -47,12 +47,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- RuoYi Common DataScope -->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-datascope</artifactId>
-        </dependency>
-        
         <!-- RuoYi Common Log -->
         <dependency>
             <groupId>com.ruoyi</groupId>

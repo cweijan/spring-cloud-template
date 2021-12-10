@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.system.mapper.SysDeptMapper">
 
-	<resultMap type="SysDept" id="SysDeptResult">
+	<resultMap type="com.ruoyi.system.domain.SysDept" id="SysDeptResult">
 		<id     property="deptId"     column="dept_id"     />
 		<result property="parentId"   column="parent_id"   />
 		<result property="ancestors"  column="ancestors"   />
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         from sys_dept d
     </sql>
     
-	<select id="selectDeptList" parameterType="SysDept" resultMap="SysDeptResult">
+	<select id="selectDeptList" resultMap="SysDeptResult">
         <include refid="selectDeptVo"/>
         where d.del_flag = '0'
 		<if test="deptId != null and deptId != 0">
@@ -58,25 +58,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by d.parent_id, d.order_num
 	</select>
     
-    <select id="selectDeptById" parameterType="Long" resultMap="SysDeptResult">
+    <select id="selectDeptById" resultMap="SysDeptResult">
 		<include refid="selectDeptVo"/>
 		where dept_id = #{deptId}
 	</select>
     
-    <select id="checkDeptExistUser" parameterType="Long" resultType="int">
+    <select id="checkDeptExistUser" resultType="int">
 		select count(1) from sys_user where dept_id = #{deptId} and del_flag = '0'
 	</select>
 	
-	<select id="hasChildByDeptId" parameterType="Long" resultType="int">
+	<select id="hasChildByDeptId" resultType="int">
 		select count(1) from sys_dept
 		where del_flag = '0' and parent_id = #{deptId} limit 1
 	</select>
 	
-	<select id="selectChildrenDeptById" parameterType="Long" resultMap="SysDeptResult">
+	<select id="selectChildrenDeptById" resultMap="SysDeptResult">
 		select * from sys_dept where find_in_set(#{deptId}, ancestors)
 	</select>
 	
-	<select id="selectNormalChildrenDeptById" parameterType="Long" resultType="int">
+	<select id="selectNormalChildrenDeptById" resultType="int">
 		select count(*) from sys_dept where status = 0 and del_flag = '0' and find_in_set(#{deptId}, ancestors)
 	</select>
 	
@@ -85,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where dept_name=#{deptName} and parent_id = #{parentId} limit 1
 	</select>
     
-    <insert id="insertDept" parameterType="SysDept">
+    <insert id="insertDept">
  		insert into sys_dept(
  			<if test="deptId != null and deptId != 0">dept_id,</if>
  			<if test="parentId != null and parentId != 0">parent_id,</if>
@@ -113,7 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		)
 	</insert>
 	
-	<update id="updateDept" parameterType="SysDept">
+	<update id="updateDept">
  		update sys_dept
  		<set>
  			<if test="parentId != null and parentId != 0">parent_id = #{parentId},</if>
@@ -130,7 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where dept_id = #{deptId}
 	</update>
 	
-	<update id="updateDeptChildren" parameterType="java.util.List">
+	<update id="updateDeptChildren">
 	    update sys_dept set ancestors =
 	    <foreach collection="depts" item="item" index="index"
 	        separator=" " open="case dept_id" close="end">
@@ -143,14 +143,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    </foreach>
 	</update>
 	 
-	<update id="updateDeptStatusNormal" parameterType="Long">
+	<update id="updateDeptStatusNormal">
  	    update sys_dept set status = '0' where dept_id in 
  	    <foreach collection="array" item="deptId" open="(" separator="," close=")">
         	#{deptId}
         </foreach>
 	</update>
 	
-	<delete id="deleteDeptById" parameterType="Long">
+	<delete id="deleteDeptById">
 		update sys_dept set del_flag = '2' where dept_id = #{deptId}
 	</delete>
 

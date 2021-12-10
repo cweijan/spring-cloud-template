@@ -13,7 +13,6 @@
         <module>ruoyi-common-core</module>
         <module>ruoyi-common-redis</module>
         <module>ruoyi-common-security</module>
-        <module>ruoyi-common-datascope</module>
     </modules>
 
     <artifactId>ruoyi-common</artifactId>

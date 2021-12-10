@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.system.mapper.SysUserMapper">
 
-	<resultMap type="SysUser" id="SysUserResult">
+	<resultMap type="com.ruoyi.system.api.domain.SysUser" id="SysUserResult">
 		<id     property="userId"       column="user_id"      />
 		<result property="deptId"       column="dept_id"      />
 		<result property="userName"     column="user_name"    />
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection  property="roles"   javaType="java.util.List"        resultMap="RoleResult" />
 	</resultMap>
 	
-	<resultMap id="deptResult" type="SysDept">
+	<resultMap id="deptResult" type="com.ruoyi.system.domain.SysDept">
 		<id     property="deptId"   column="dept_id"     />
 		<result property="parentId" column="parent_id"   />
 		<result property="deptName" column="dept_name"   />
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="status"   column="dept_status" />
 	</resultMap>
 	
-	<resultMap id="RoleResult" type="SysRole">
+	<resultMap id="RoleResult" type="com.ruoyi.system.domain.SysRole">
 		<id     property="roleId"       column="role_id"        />
 		<result property="roleName"     column="role_name"      />
 		<result property="roleKey"      column="role_key"       />
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    left join sys_role r on r.role_id = ur.role_id
     </sql>
     
-    <select id="selectUserList" parameterType="SysUser" resultMap="SysUserResult">
+    <select id="selectUserList" resultMap="SysUserResult">
 		select u.user_id, u.dept_id, u.nick_name, u.user_name, u.email, u.avatar, u.phonenumber, u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, d.dept_name, d.leader from sys_user u
 		left join sys_dept d on u.dept_id = d.dept_id
 		where u.del_flag = '0'
@@ -84,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${params.dataScope}
 	</select>
 	
-	<select id="selectAllocatedList" parameterType="SysUser" resultMap="SysUserResult">
+	<select id="selectAllocatedList" resultMap="SysUserResult">
 	    select distinct u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.phonenumber, u.status, u.create_time
 	    from sys_user u
 			 left join sys_dept d on u.dept_id = d.dept_id
@@ -101,7 +101,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${params.dataScope}
 	</select>
 	
-	<select id="selectUnallocatedList" parameterType="SysUser" resultMap="SysUserResult">
+	<select id="selectUnallocatedList" resultMap="SysUserResult">
 	    select distinct u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.phonenumber, u.status, u.create_time
 	    from sys_user u
 			 left join sys_dept d on u.dept_id = d.dept_id
@@ -119,29 +119,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		${params.dataScope}
 	</select>
 	
-	<select id="selectUserByUserName" parameterType="String" resultMap="SysUserResult">
+	<select id="selectUserByUserName" resultMap="SysUserResult">
 	    <include refid="selectUserVo"/>
 		where u.user_name = #{userName}
 	</select>
 	
-	<select id="selectUserById" parameterType="Long" resultMap="SysUserResult">
+	<select id="selectUserById" resultMap="SysUserResult">
 		<include refid="selectUserVo"/>
 		where u.user_id = #{userId}
 	</select>
 	
-	<select id="checkUserNameUnique" parameterType="String" resultType="int">
+	<select id="checkUserNameUnique" resultType="int">
 		select count(1) from sys_user where user_name = #{userName} limit 1
 	</select>
 	
-	<select id="checkPhoneUnique" parameterType="String" resultMap="SysUserResult">
+	<select id="checkPhoneUnique" resultMap="SysUserResult">
 		select user_id, phonenumber from sys_user where phonenumber = #{phonenumber} limit 1
 	</select>
 	
-	<select id="checkEmailUnique" parameterType="String" resultMap="SysUserResult">
+	<select id="checkEmailUnique" resultMap="SysUserResult">
 		select user_id, email from sys_user where email = #{email} limit 1
 	</select>
 	
-	<insert id="insertUser" parameterType="SysUser" useGeneratedKeys="true" keyProperty="userId">
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
  		insert into sys_user(
  			<if test="userId != null and userId != 0">user_id,</if>
  			<if test="deptId != null and deptId != 0">dept_id,</if>
@@ -173,7 +173,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		)
 	</insert>
 	
-	<update id="updateUser" parameterType="SysUser">
+	<update id="updateUser">
  		update sys_user
  		<set>
  			<if test="deptId != null and deptId != 0">dept_id = #{deptId},</if>
@@ -194,23 +194,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where user_id = #{userId}
 	</update>
 	
-	<update id="updateUserStatus" parameterType="SysUser">
+	<update id="updateUserStatus">
  		update sys_user set status = #{status} where user_id = #{userId}
 	</update>
 	
-	<update id="updateUserAvatar" parameterType="SysUser">
+	<update id="updateUserAvatar">
  		update sys_user set avatar = #{avatar} where user_name = #{userName}
 	</update>
 	
-	<update id="resetUserPwd" parameterType="SysUser">
+	<update id="resetUserPwd">
  		update sys_user set password = #{password} where user_name = #{userName}
 	</update>
 	
-	<delete id="deleteUserById" parameterType="Long">
+	<delete id="deleteUserById">
 		update sys_user set del_flag = '2' where user_id = #{userId}
  	</delete>
  	
- 	<delete id="deleteUserByIds" parameterType="Long">
+ 	<delete id="deleteUserByIds">
  		update sys_user set del_flag = '2' where user_id in
  		<foreach collection="array" item="userId" open="(" separator="," close=")">
  			#{userId}
