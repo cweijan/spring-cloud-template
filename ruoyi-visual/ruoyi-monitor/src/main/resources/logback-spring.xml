@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <springProperty scope="context" name="LOG_PATH" source="log.path" defaultValue="logs"/>
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name" defaultValue="logs"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Spring日志级别控制  -->
+    <logger name="org.springframework" level="warn" />
+
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+        </root>
+        <!--        <logger name="cn.stylefeng" level="debug" additivity="false">-->
+        <!--            <appender-ref ref="STDOUT"/>-->
+        <!--        </logger>-->
+    </springProfile>
+
+    <springProfile name="!dev" >
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+            <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${LOG_PATH}/${APP_NAME}/error.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_PATH}/${APP_NAME}/error/error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <maxFileSize>10MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                </rollingPolicy>
+                <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                    <pattern>${FILE_LOG_PATTERN}</pattern>
+                    <charset>utf-8</charset>
+                </encoder>
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>error</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender>
+            <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${LOG_PATH}/${APP_NAME}/info.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_PATH}/${APP_NAME}/info/info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                    <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                        <maxFileSize>10MB</maxFileSize>
+                    </timeBasedFileNamingAndTriggeringPolicy>
+                    <!-- 日志最大的历史 60天 -->
+                    <maxHistory>60</maxHistory>
+                </rollingPolicy>
+                <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                    <pattern>${FILE_LOG_PATTERN}</pattern>
+                    <charset>utf-8</charset>
+                </encoder>
+            </appender>
+        </root>
+    </springProfile>
+
+</configuration>
