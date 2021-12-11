@@ -76,17 +76,6 @@ services:
       - ruoyi-redis
     links:
       - ruoyi-redis
-  ruoyi-auth:
-    container_name: ruoyi-auth
-    build:
-      context: ./ruoyi/auth
-      dockerfile: dockerfile
-    ports:
-      - "9200:9200"
-    depends_on:
-      - ruoyi-redis
-    links:
-      - ruoyi-redis
   ruoyi-modules-system:
     container_name: ruoyi-modules-system
     build:

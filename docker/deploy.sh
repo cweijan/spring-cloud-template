@@ -31,7 +31,7 @@ base(){
 
 # 启动程序模块（必须）
 modules(){
-	docker-compose up -d ruoyi-gateway ruoyi-auth ruoyi-modules-system
+	docker-compose up -d ruoyi-gateway ruoyi-modules-system
 }
 
 # 关闭所有环境/模块
