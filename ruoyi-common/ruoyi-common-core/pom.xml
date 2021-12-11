@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ruoyi-common-core</artifactId>
-    
+
     <description>
         ruoyi-common-core核心模块
     </description>
@@ -22,7 +22,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        
+
         <!-- SpringCloud Loadbalancer -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -47,12 +47,6 @@
             <artifactId>transmittable-thread-local</artifactId>
         </dependency>
 
-        <!-- Apache Commons Pool2 -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-        </dependency>
-
         <!-- Pagehelper -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -63,12 +57,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-
-        <!-- Jackson -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
         </dependency>
 
         <!-- Alibaba Fastjson -->
