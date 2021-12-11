@@ -18,7 +18,7 @@ import com.ruoyi.common.log.enums.BusinessType;
 import ${packageName}.domain.${ClassName};
 import ${packageName}.service.${ClassName}Service;
 import com.ruoyi.common.core.web.controller.BaseController;
-import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.utils.poi.ExcelUtil;
 #if($table.crud || $table.sub)
 import com.ruoyi.common.core.web.page.TableDataInfo;
@@ -27,14 +27,13 @@ import com.ruoyi.common.core.web.page.TableDataInfo;
 
 /**
  * ${functionName}Controller
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
 @RestController
 @RequestMapping("/${businessName}")
-public class ${ClassName}Controller extends BaseController
-{
+public class ${ClassName}Controller extends BaseController{
     @Autowired
     private ${ClassName}Service ${className}Service;
 
@@ -43,27 +42,24 @@ public class ${ClassName}Controller extends BaseController
      */
     @GetMapping("/list")
 #if($table.crud || $table.sub)
-    public TableDataInfo list(${ClassName} ${className})
-    {
+    public TableDataInfo list(${ClassName} ${className}){
         startPage();
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
         return getDataTable(list);
     }
 #elseif($table.tree)
-    public AjaxResult list(${ClassName} ${className})
-    {
+    public R<${ClassName}> list(${ClassName} ${className}){
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
-        return AjaxResult.success(list);
+        return R.ok(list);
     }
 #end
 
     /**
      * 导出${functionName}列表
      */
-    @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, ${ClassName} ${className})
-    {
+    @Log(title = "${functionName}", businessType = BusinessType.EXPORT)
+    public void export(HttpServletResponse response, ${ClassName} ${className}){
         List<${ClassName}> list = ${className}Service.select${ClassName}List(${className});
         ExcelUtil<${ClassName}> util = new ExcelUtil<${ClassName}>(${ClassName}.class);
         util.exportExcel(response, list, "${functionName}数据");
@@ -73,38 +69,34 @@ public class ${ClassName}Controller extends BaseController
      * 获取${functionName}详细信息
      */
     @GetMapping(value = "/{${pkColumn.javaField}}")
-    public AjaxResult getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField})
-    {
-        return AjaxResult.success(${className}Service.getById(${pkColumn.javaField}));
+    public R<${ClassName}> getInfo(@PathVariable("${pkColumn.javaField}") ${pkColumn.javaType} ${pkColumn.javaField}){
+        return R.ok(${className}Service.getById(${pkColumn.javaField}));
     }
 
     /**
      * 新增${functionName}
      */
-    @Log(title = "${functionName}", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody ${ClassName} ${className})
-    {
-        return toAjax(${className}Service.save(${className}));
+    @Log(title = "${functionName}", businessType = BusinessType.INSERT)
+    public R<?> add(@RequestBody ${ClassName} ${className}){
+        return R.ok(${className}Service.save(${className}));
     }
 
     /**
      * 修改${functionName}
      */
-    @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody ${ClassName} ${className})
-    {
-        return toAjax(${className}Service.updateById(${className}));
+    @Log(title = "${functionName}", businessType = BusinessType.UPDATE)
+    public R<?> edit(@RequestBody ${ClassName} ${className}){
+        return R.ok(${className}Service.updateById(${className}));
     }
 
     /**
      * 删除${functionName}
      */
-    @Log(title = "${functionName}", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{${pkColumn.javaField}s}")
-    public AjaxResult remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s)
-    {
-        return toAjax(${className}Service.removeByIds(Arrays.asList(${pkColumn.javaField}s)));
+    @Log(title = "${functionName}", businessType = BusinessType.DELETE)
+    public R<?> remove(@PathVariable ${pkColumn.javaType}[] ${pkColumn.javaField}s){
+        return R.ok(${className}Service.removeByIds(Arrays.asList(${pkColumn.javaField}s)));
     }
 }

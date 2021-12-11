@@ -22,19 +22,18 @@ import ${packageName}.service.${ClassName}Service;
 
 /**
  * ${functionName}Service业务层处理
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
 @Service
-public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper,${ClassName}> implements ${ClassName}Service
-{
+public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper,${ClassName}> implements ${ClassName}Service{
     @Autowired
     private ${ClassName}Mapper ${className}Mapper;
 
     /**
      * 查询${functionName}列表
-     * 
+     *
      * @param ${className} ${functionName}
      * @return ${functionName}
      */

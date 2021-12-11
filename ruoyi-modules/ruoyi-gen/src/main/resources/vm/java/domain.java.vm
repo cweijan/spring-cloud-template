@@ -15,7 +15,7 @@ import com.ruoyi.common.core.web.domain.TreeEntity;
 
 /**
  * ${functionName}对象 ${tableName}
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
@@ -25,8 +25,7 @@ import com.ruoyi.common.core.web.domain.TreeEntity;
 #set($Entity="TreeEntity")
 #end
 @Data
-public class ${ClassName} extends ${Entity}
-{
+public class ${ClassName} extends ${Entity}{
 
 #foreach ($column in $columns)
 #if(!$table.isSuperColumn($column.javaField))
