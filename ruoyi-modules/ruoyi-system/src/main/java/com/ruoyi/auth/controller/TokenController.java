@@ -1,10 +1,10 @@
-package com.ruoyi.system.auth.controller;
+package com.ruoyi.auth.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.ruoyi.system.auth.form.LoginBody;
-import com.ruoyi.system.auth.form.RegisterBody;
-import com.ruoyi.system.auth.service.SysLoginService;
+import com.ruoyi.auth.form.LoginBody;
+import com.ruoyi.auth.form.RegisterBody;
+import com.ruoyi.auth.service.SysLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +20,7 @@ import com.ruoyi.system.api.model.LoginUser;
 
 /**
  * token 控制
- * 
+ *
  * @author ruoyi
  */
 @RestController

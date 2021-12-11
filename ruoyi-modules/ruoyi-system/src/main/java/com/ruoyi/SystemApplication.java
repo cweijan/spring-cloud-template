@@ -1,4 +1,4 @@
-package com.ruoyi.system;
+package com.ruoyi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,17 +8,17 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 
 /**
  * 系统模块
- * 
+ *
  * @author ruoyi
  */
 @EnableCustomConfig
 @EnableRyFeignClients
 @SpringBootApplication(exclude = DataSourceTransactionManagerAutoConfiguration.class)
-public class RuoYiSystemApplication
+public class SystemApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiSystemApplication.class, args);
+        SpringApplication.run(SystemApplication.class, args);
         System.out.println("系统模块启动成功  ");
     }
 }

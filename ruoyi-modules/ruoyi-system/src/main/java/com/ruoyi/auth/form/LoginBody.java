@@ -1,8 +1,8 @@
-package com.ruoyi.system.auth.form;
+package com.ruoyi.auth.form;
 
 /**
  * 用户登录对象
- * 
+ *
  * @author ruoyi
  */
 public class LoginBody
