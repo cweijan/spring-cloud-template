@@ -26,11 +26,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        #foreach($column in $columns) $column.columnName#if($velocityCount != $columns.size()),#end#end
-    </sql>
+        #foreach($column in $columns) $column.columnName#if($foreach.count != $columns.size()),#end#end
 
-    <sql id="select${ClassName}Vo">
-        select#foreach($column in $columns) $column.columnName#if($velocityCount != $columns.size()),#end#end from ${tableName}
     </sql>
 
     <select id="select${ClassName}List" resultMap="${ClassName}Result">
