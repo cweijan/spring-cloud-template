@@ -3,15 +3,15 @@
   .main-container {
     min-height: 100%;
     transition: margin-left .28s;
-    margin-left: $base-sidebar-width;
+    margin-left: $sideBarWidth;
     position: relative;
   }
 
   .sidebar-container {
     -webkit-transition: width .28s;
     transition: width 0.28s;
-    width: $base-sidebar-width !important;
-    background-color: $base-menu-background;
+    width: $sideBarWidth !important;
+    background-color: $menuBg;
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -20,8 +20,8 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
-    -webkit-box-shadow: 2px 0 6px rgba(0,21,41,.35);
-    box-shadow: 2px 0 6px rgba(0,21,41,.35);
+    -webkit-box-shadow: 2px 8px 8px 0 rgb(29 35 41 / 5%);
+    box-shadow: 2px 8px 8px 0 rgb(29 35 41 / 5%);
 
     // reset element-ui css
     .horizontal-collapse-transition {
@@ -81,24 +81,25 @@
     }
 
     & .theme-dark .is-active > .el-submenu__title {
-      color: $base-menu-color-active !important;
+      color: $subMenuActiveText !important;
     }
 
-    & .nest-menu .el-submenu>.el-submenu__title,
+    & .nest-menu .el-submenu > .el-submenu__title,
     & .el-submenu .el-menu-item {
-      min-width: $base-sidebar-width !important;
+      min-width: $sideBarWidth !important;
+      padding-left: 20px !important;
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.06) !important;
       }
     }
 
-    & .theme-dark .nest-menu .el-submenu>.el-submenu__title,
+    & .theme-dark .nest-menu .el-submenu > .el-submenu__title,
     & .theme-dark .el-submenu .el-menu-item {
-      background-color: $base-sub-menu-background !important;
+      background-color: $subMenuBg !important;
 
       &:hover {
-        background-color: $base-sub-menu-hover !important;
+        background-color: $subMenuHover !important;
       }
     }
   }
@@ -128,7 +129,7 @@
     .el-submenu {
       overflow: hidden;
 
-      &>.el-submenu__title {
+      & > .el-submenu__title {
         padding: 0 !important;
 
         .svg-icon {
@@ -140,8 +141,8 @@
 
     .el-menu--collapse {
       .el-submenu {
-        &>.el-submenu__title {
-          &>span {
+        & > .el-submenu__title {
+          & > span {
             height: 0;
             width: 0;
             overflow: hidden;
@@ -154,7 +155,7 @@
   }
 
   .el-menu--collapse .el-menu .el-submenu {
-    min-width: $base-sidebar-width !important;
+    min-width: $sideBarWidth !important;
   }
 
   // mobile responsive
@@ -165,14 +166,14 @@
 
     .sidebar-container {
       transition: transform .28s;
-      width: $base-sidebar-width !important;
+      width: $sideBarWidth !important;
     }
 
     &.hideSidebar {
       .sidebar-container {
         pointer-events: none;
         transition-duration: 0.3s;
-        transform: translate3d(-$base-sidebar-width, 0, 0);
+        transform: translate3d(-$sideBarWidth, 0, 0);
       }
     }
   }
@@ -188,13 +189,13 @@
 
 // when menu collapsed
 .el-menu--vertical {
-  &>.el-menu {
+  & > .el-menu {
     .svg-icon {
       margin-right: 16px;
     }
   }
 
-  .nest-menu .el-submenu>.el-submenu__title,
+  .nest-menu .el-submenu > .el-submenu__title,
   .el-menu-item {
     &:hover {
       // you can use $subMenuHover
@@ -203,7 +204,7 @@
   }
 
   // the scroll bar appears when the subMenu is too long
-  >.el-menu--popup {
+  > .el-menu--popup {
     max-height: 100vh;
     overflow-y: auto;
 

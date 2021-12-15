@@ -1,4 +1,8 @@
 // cover some element-ui styles
+.el-input--small .el-input__inner {
+  height: 28px;
+  line-height: 28px;
+}
 
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
@@ -47,12 +51,87 @@
 }
 
 // to fixed https://github.com/ElemeFE/element/issues/2461
+//.el-dialog {
+//  transform: none;
+//  left: 0;
+//  position: relative;
+//  margin: 0 auto;
+//}
+
 .el-dialog {
-  transform: none;
-  left: 0;
-  position: relative;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100% - 30px);
+  max-width: calc(100% - 30px);
+
+  .el-dialog__body {
+    transform: translate3d(0, 0, 0);
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+
+    .el-form {
+      margin: 10px;
+      //font-weight: 300;
+      .el-date-editor, .el-select {
+        width: 100%;
+      }
+    }
+
+    .el-tabs__item.is-top {
+      padding-left: 10px !important;
+    }
+
+    .el-tabs__content {
+      padding: 10px;
+    }
+  }
+
+  .el-dialog__header {
+    padding: 8px !important;
+    border-bottom: 1px solid #f4f4f4;
+    background: #F8F8F8;
+
+    .el-dialog__title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    .el-dialog__headerbtn {
+      top: 8px;
+      right: 8px;
+      font-size: 14px;
+    }
+  }
+
+  .el-dialog__footer {
+    //text-align: center !important;
+    padding: 12px 20px 12px 20px !important;
+    border-top: 1px solid #f4f4f4;
+    background: #F8F8F8;
+  }
+
+  //.el-dialog__headerbtn {
+  //  position: absolute;
+  //  top: 20px;
+  //  right: 20px;
+  //  padding: 0;
+  //  background: 0 0;
+  //  border: none;
+  //  outline: 0;
+  //  cursor: pointer;
+  //  font-size: 24px !important;
+  //}
+
+  .el-dialog__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
+
 
 // refine element ui upload
 .upload-container {

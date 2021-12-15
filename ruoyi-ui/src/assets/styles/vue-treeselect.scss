@@ -1,0 +1,26 @@
+@mixin vue-tree-select-mixin($size) {
+  //width: 204px;
+  line-height: $size;
+  .vue-treeselect__placeholder {
+    line-height: $size;
+  }
+  .vue-treeselect__control {
+    height: $size;
+  }
+}
+
+.vue-tree-select-default {
+  @include vue-tree-select-mixin(38px);
+}
+
+.vue-tree-select-medium {
+  @include vue-tree-select-mixin(34px);
+}
+
+.vue-tree-select-small {
+  @include vue-tree-select-mixin(30px);
+}
+
+.vue-tree-select-mini {
+  @include vue-tree-select-mixin(26px);
+}

@@ -10,7 +10,7 @@ import { isExternal } from '@/utils/validate'
 export default {
   props: {
     to: {
-      type: [String, Object],
+      type: String,
       required: true
     }
   },
